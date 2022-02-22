@@ -15,15 +15,15 @@ class MainLocation extends BeamLocation<BeamState> {
         BeamPage(
           key: ValueKey('main-${state.uri}'),
           title: 'Main',
-          child: MainWrapper(),
+          child: Routes(),
         )
       ];
 }
 
-class MainWrapper extends StatelessWidget {
+class Routes extends StatelessWidget {
   final _beamerKey = GlobalKey<BeamerState>();
 
-  MainWrapper({Key? key}) : super(key: key);
+  Routes({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,10 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:beamer/beamer.dart';
 
+import 'package:flutter_web_starter/router.dart';
 import 'package:flutter_web_starter/provider/theme.dart';
 import 'package:flutter_web_starter/ui/block_wrapper.dart';
 
 import 'package:flutter_web_starter/components/components.dart';
+
+class SettingsScreen extends StatelessWidget {
+  final _beamerKey = GlobalKey<BeamerState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Row(
+        children: [
+          Expanded(
+            child: ClipRRect(
+              child: Beamer(
+                key: _beamerKey,
+                routerDelegate: BeamerDelegate(
+                  locationBuilder: (routeInformation, _) =>
+                      SettingsContentLocation(routeInformation),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
 
 class SettingsHomeScreen extends StatelessWidget {
   @override

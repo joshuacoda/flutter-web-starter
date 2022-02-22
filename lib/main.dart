@@ -4,7 +4,7 @@ import 'package:flutter_web_starter/provider/theme.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'components/components.dart';
 import 'package:beamer/beamer.dart';
-import 'main_location.dart';
+import 'router.dart';
 
 void main() async {
   // load the shared preferences from disk before the app is started

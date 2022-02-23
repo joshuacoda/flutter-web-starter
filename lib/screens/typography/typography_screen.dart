@@ -6,10 +6,10 @@ import 'package:flutter_web_starter/ui/block_wrapper.dart';
 
 import 'blocks/theme_row.dart';
 
-class SettingsScreen extends StatelessWidget {
+class TypographyScreen extends StatelessWidget {
   final _beamerKey = GlobalKey<BeamerState>();
 
-  SettingsScreen({Key? key}) : super(key: key);
+  TypographyScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class SettingsScreen extends StatelessWidget {
                 key: _beamerKey,
                 routerDelegate: BeamerDelegate(
                   locationBuilder: (routeInformation, _) =>
-                      SettingsContentLocation(routeInformation),
+                      TypographyContentLocation(routeInformation),
                 ),
               ),
             ),
@@ -33,8 +33,8 @@ class SettingsScreen extends StatelessWidget {
   }
 }
 
-class SettingsHomeScreen extends StatelessWidget {
-  const SettingsHomeScreen({Key? key}) : super(key: key);
+class TypographyHomeScreen extends StatelessWidget {
+  const TypographyHomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -50,5 +50,5 @@ class SettingsHomeScreen extends StatelessWidget {
 
 List<Widget> blocks = [
   const BlockWrapper(SizedBox(height: 12.0)),
-  const BlockWrapper(ThemeRow()),
+  const BlockWrapper(TypographyRow()),
 ];

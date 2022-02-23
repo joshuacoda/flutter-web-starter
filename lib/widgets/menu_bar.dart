@@ -57,10 +57,32 @@ class MenuBar extends StatelessWidget {
               cursor: SystemMouseCursors.click,
               child: MenuButton(
                 beamer: beamerKey,
-                uri: '/news',
+                uri: '/home',
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Text("News",
+                  child: Text("Home",
+                      style: TextStyle(
+                          fontSize: 16,
+                          color:
+                              Theme.of(context).brightness == Brightness.light
+                                  ? navLinkColor
+                                  : Colors.white,
+                          fontFamily: fontFamily)),
+                ),
+              ),
+            ),
+          ),
+          ResponsiveVisibility(
+            visible: false,
+            visibleWhen: const [Condition.largerThan(name: MOBILE)],
+            child: MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: MenuButton(
+                beamer: beamerKey,
+                uri: '/typography',
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Text("Typography",
                       style: TextStyle(
                           fontSize: 16,
                           color:

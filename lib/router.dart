@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:beamer/beamer.dart';
 
-import 'package:flutter_web_starter/screens/news/news_screen.dart';
+import 'package:flutter_web_starter/screens/home/home_screen.dart';
 import 'package:flutter_web_starter/screens/settings/settings_screen.dart';
+import 'package:flutter_web_starter/screens/typography/typography_screen.dart';
 import 'widgets/menu_bar.dart';
 
 class MainLocation extends BeamLocation<BeamState> {
@@ -47,13 +48,16 @@ class Routes extends StatelessWidget {
                   routerDelegate: BeamerDelegate(
                       transitionDelegate: const NoAnimationTransitionDelegate(),
                       locationBuilder: (routeInformation, _) {
-                        if (routeInformation.location!.contains('news')) {
-                          return NewsLocation(routeInformation);
+                        if (routeInformation.location!.contains('home')) {
+                          return HomeLocation(routeInformation);
+                        }
+                        if (routeInformation.location!.contains('typography')) {
+                          return TypographyLocation(routeInformation);
                         }
                         if (routeInformation.location!.contains('settings')) {
                           return SettingsLocation(routeInformation);
                         } else {
-                          return NewsLocation(routeInformation);
+                          return HomeLocation(routeInformation);
                         }
                       }),
                 ),
@@ -65,38 +69,75 @@ class Routes extends StatelessWidget {
   }
 }
 
-class NewsLocation extends BeamLocation<BeamState> {
-  NewsLocation(RouteInformation routeInformation) : super(routeInformation);
+class HomeLocation extends BeamLocation<BeamState> {
+  HomeLocation(RouteInformation routeInformation) : super(routeInformation);
 
   @override
-  List<String> get pathPatterns => ['/news/*'];
+  List<String> get pathPatterns => ['/home/*'];
 
   @override
   List<BeamPage> buildPages(BuildContext context, BeamState state) => [
         BeamPage(
-          key: const ValueKey('news'),
-          title: 'news',
-          child: NewsScreen(),
+          key: const ValueKey('home'),
+          title: 'home',
+          child: HomeScreen(),
         )
       ];
 }
 
-class NewsContentLocation extends BeamLocation<BeamState> {
-  NewsContentLocation(RouteInformation routeInformation)
+class HomeContentLocation extends BeamLocation<BeamState> {
+  HomeContentLocation(RouteInformation routeInformation)
       : super(routeInformation);
 
   @override
   List<String> get pathPatterns => [
-        '/news/authors',
-        '/news/genres',
+        '/home/authors',
+        '/home/genres',
       ];
 
   @override
   List<BeamPage> buildPages(BuildContext context, BeamState state) => [
         const BeamPage(
-          key: ValueKey('news-home'),
-          title: 'News Home',
-          child: NewsHomeScreen(),
+          key: ValueKey('home-home'),
+          title: 'Home Home',
+          child: HomeHomeScreen(),
+        ),
+      ];
+}
+
+class TypographyLocation extends BeamLocation<BeamState> {
+  TypographyLocation(RouteInformation routeInformation)
+      : super(routeInformation);
+
+  @override
+  List<String> get pathPatterns => ['/typography/*'];
+
+  @override
+  List<BeamPage> buildPages(BuildContext context, BeamState state) => [
+        BeamPage(
+          key: const ValueKey('typography'),
+          title: 'typography',
+          child: TypographyScreen(),
+        )
+      ];
+}
+
+class TypographyContentLocation extends BeamLocation<BeamState> {
+  TypographyContentLocation(RouteInformation routeInformation)
+      : super(routeInformation);
+
+  @override
+  List<String> get pathPatterns => [
+        '/home/authors',
+        '/home/genres',
+      ];
+
+  @override
+  List<BeamPage> buildPages(BuildContext context, BeamState state) => [
+        const BeamPage(
+          key: ValueKey('typography-home'),
+          title: 'Typography Home',
+          child: TypographyHomeScreen(),
         ),
       ];
 }

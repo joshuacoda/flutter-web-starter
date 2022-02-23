@@ -3,15 +3,15 @@ import 'package:flutter_web_starter/components/components.dart';
 import 'package:flutter_web_starter/utils/utils.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-class FlutterNewsRow extends StatelessWidget {
-  const FlutterNewsRow({Key? key}) : super(key: key);
+class FlutterHomeRow extends StatelessWidget {
+  const FlutterHomeRow({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: blockMargin,
       child: const ResponsiveRowColumn(
-        layout: ResponsiveRowColumnType.COLUMN,
+        layout: ResponsiveRowColumnType.ROW,
         rowCrossAxisAlignment: CrossAxisAlignment.start,
         rowSpacing: 25,
         columnSpacing: 32,
@@ -19,7 +19,7 @@ class FlutterNewsRow extends StatelessWidget {
           ResponsiveRowColumnItem(
             rowFlex: 1,
             rowFit: FlexFit.tight,
-            child: FlutterNewsCard(
+            child: FlutterHomeCard(
               title: "Announcing Flutter 1.12",
               imagePath: "assets/images/news_flutter_1.12.png",
               linkUrl:
@@ -29,7 +29,7 @@ class FlutterNewsRow extends StatelessWidget {
           ResponsiveRowColumnItem(
             rowFlex: 1,
             rowFit: FlexFit.tight,
-            child: FlutterNewsCard(
+            child: FlutterHomeCard(
               title: "CodePen now supports Flutter",
               imagePath: "assets/images/news_flutter_codepen.png",
               linkUrl:
@@ -42,12 +42,12 @@ class FlutterNewsRow extends StatelessWidget {
   }
 }
 
-class FlutterNewsCard extends StatelessWidget {
+class FlutterHomeCard extends StatelessWidget {
   final String title;
   final String imagePath;
   final String linkUrl;
 
-  const FlutterNewsCard(
+  const FlutterHomeCard(
       {Key? key,
       required this.title,
       required this.imagePath,
@@ -75,7 +75,7 @@ class FlutterNewsCard extends StatelessWidget {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.only(bottom: 16),
-                  child: Text("News",
+                  child: Text("Home",
                       style: bodyTextStyle.copyWith(
                           fontSize: 12, color: const Color(0xFF6C757D))),
                 ),

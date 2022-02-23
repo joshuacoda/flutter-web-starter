@@ -10,12 +10,14 @@ class FlutterHomeRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: blockMargin,
-      child: const ResponsiveRowColumn(
-        layout: ResponsiveRowColumnType.ROW,
+      child: ResponsiveRowColumn(
+        layout: ResponsiveWrapper.of(context).isSmallerThan(DESKTOP)
+            ? ResponsiveRowColumnType.COLUMN
+            : ResponsiveRowColumnType.ROW,
         rowCrossAxisAlignment: CrossAxisAlignment.start,
         rowSpacing: 25,
         columnSpacing: 32,
-        children: [
+        children: const [
           ResponsiveRowColumnItem(
             rowFlex: 1,
             rowFit: FlexFit.tight,

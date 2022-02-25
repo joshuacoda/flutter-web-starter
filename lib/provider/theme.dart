@@ -31,10 +31,6 @@ class ThemeProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // Future<void> _initPreferences() async {
-  //   prefs = await _prefs;
-  // }
-
   mapTheme() {
     switch (prefs.getString(themeKey)) {
       case 'light':
@@ -74,19 +70,16 @@ class ThemeProvider extends ChangeNotifier {
   }
 
   loadFromPreferences() async {
-    // await _initPreferences();
     mapTheme();
     mapPrimaryColor();
     notifyListeners();
   }
 
   saveThemePreferences(selectedThemeMode) async {
-    // await _initPreferences();
     prefs.setString(themeKey, selectedThemeMode);
   }
 
   savePrimaryColorPreferences(selectedPrimaryColor) async {
-    // await _initPreferences();
     prefs.setString(primaryColorKey, selectedPrimaryColor);
   }
 }

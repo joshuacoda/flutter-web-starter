@@ -5,7 +5,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 //  https://gist.github.com/ggichure/c1ca99f13a7e0f3e6842bedcab9970ba <---
 
 class ThemeProvider extends ChangeNotifier {
-  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   late SharedPreferences prefs;
 
   late ThemeMode _selectedThemeMode;
@@ -17,9 +16,7 @@ class ThemeProvider extends ChangeNotifier {
   ThemeMode get selectedThemeMode => _selectedThemeMode;
   Color get selectedPrimaryColor => _selectedPrimaryColor;
 
-  ThemeProvider() {
-    _selectedThemeMode = appThemes[0].mode;
-    _selectedPrimaryColor = AppColors.primaryColors[0];
+  ThemeProvider(this.prefs) {
     loadFromPreferences();
   }
   setSelectedThemeMode(ThemeMode _themeMode) {
@@ -34,9 +31,9 @@ class ThemeProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  _initPreferences() async {
-    prefs = await _prefs;
-  }
+  // Future<void> _initPreferences() async {
+  //   prefs = await _prefs;
+  // }
 
   mapTheme() {
     switch (prefs.getString(themeKey)) {
@@ -77,19 +74,19 @@ class ThemeProvider extends ChangeNotifier {
   }
 
   loadFromPreferences() async {
-    await _initPreferences();
+    // await _initPreferences();
     mapTheme();
     mapPrimaryColor();
     notifyListeners();
   }
 
   saveThemePreferences(selectedThemeMode) async {
-    await _initPreferences();
+    // await _initPreferences();
     prefs.setString(themeKey, selectedThemeMode);
   }
 
   savePrimaryColorPreferences(selectedPrimaryColor) async {
-    await _initPreferences();
+    // await _initPreferences();
     prefs.setString(primaryColorKey, selectedPrimaryColor);
   }
 }

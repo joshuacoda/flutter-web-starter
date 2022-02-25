@@ -1,26 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_web_starter/provider/theme.dart';
-import 'package:responsive_framework/responsive_framework.dart';
-import 'components/components.dart';
 import 'package:beamer/beamer.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:responsive_framework/responsive_framework.dart';
+
+import 'package:flutter_web_starter/provider/theme.dart';
+
+import 'components/components.dart';
 import 'router.dart';
 
 void main() async {
   // load the shared preferences from disk before the app is started
   WidgetsFlutterBinding.ensureInitialized();
-
-  // create new theme controller, which will get the currently selected from shared preferences
-
-  runApp(MyApp());
+  final prefs = await SharedPreferences.getInstance();
+  // create new theme Provider, which will get the currently selected from shared preferences
+  final themeProvider = ThemeProvider(prefs);
+  runApp(MyApp(themeProvider: themeProvider));
 }
 
 class MyApp extends StatelessWidget {
+  final ThemeProvider themeProvider;
   final routerDelegate = BeamerDelegate(
     locationBuilder: (routeInformation, _) => MainLocation(routeInformation),
   );
 
-  MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key, required this.themeProvider}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +32,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => ThemeProvider(),
+          create: (_) => themeProvider,
         ),
       ],
       child: Consumer<ThemeProvider>(
